@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member</title>
+    <style>
+        /* Reset mặc định */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background */
+        body {
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container */
+        .form-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 800px; /* Giới hạn chiều rộng */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .form-container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input Section */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-group input, 
+        .input-group select, 
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .input-group input:focus, 
+        .input-group select:focus, 
+        .input-group textarea:focus {
+            border-color: #42a5f5;
+            box-shadow: 0 0 5px rgba(66, 165, 245, 0.3);
+        }
+
+        .input-group input:hover, 
+        .input-group select:hover, 
+        .input-group textarea:hover {
+            border-color: #1e88e5;
+        }
+
+        /* Multi-Column Section */
+        .input-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap; /* Tự động xuống dòng khi chiều rộng không đủ */
+        }
+
+        .input-row .input-group {
+            flex: 1;
+            min-width: 250px; /* Đảm bảo ô nhập liệu không quá nhỏ */
+        }
+
+        /* Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-save {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .btn-save:hover {
+            background-color: #218838;
+        }
+
+        .btn-save:active {
+            transform: scale(0.98);
+        }
+
+        .btn-reset {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+
+        .btn-reset:hover {
+            background-color: #c82333;
+        }
+
+        .btn-reset:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive cho thiết bị di động */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            .input-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Add New Member</h2>
+
+    <!-- Member Basic Information -->
+    <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter full name" required>
+    </div>
+
+    <div class="input-group">
+        <label for="memberId">Membership ID</label>
+        <input type="text" id="memberId" placeholder="Auto-generated ID" disabled>
+    </div>
+
+    <div class="input-row">
+        <div class="input-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" required>
+        </div>
+        <div class="input-group">
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter email address" required>
+    </div>
+
+    <div class="input-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter phone number" required>
+    </div>
+
+    <div class="input-group">
+        <label for="address">Address</label>
+        <textarea id="address" rows="2" placeholder="Enter address" required></textarea>
+    </div>
+
+    <!-- Membership Plan Details -->
+    <div class="input-group">
+        <label for="membershipPlan">Membership Plan</label>
+        <select id="membershipPlan" required>
+            <option value="" disabled selected>Select plan</option>
+            <option value="monthly">Monthly</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="annual">Annual</option>
+        </select>
+    </div>
+
+    <div class="input-row">
+        <div class="input-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" required>
+        </div>
+        <div class="input-group">
+            <label for="expiryDate">Expiry Date</label>
+            <input type="date" id="expiryDate" required>
+        </div>
+    </div>
+
+    <!-- Initial Payment Information -->
+    <div class="input-group">
+        <label for="amountPaid">Amount Paid</label>
+        <input type="number" id="amountPaid" placeholder="Enter initial payment" required>
+    </div>
+
+    <div class="input-group">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" required>
+            <option value="" disabled selected>Select payment method</option>
+            <option value="creditCard">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bankTransfer">Bank Transfer</option>
+        </select>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button class="btn btn-reset" type="reset">Reset</button>
+        <button class="btn btn-save" type="submit">Add Member</button>
+    </div>
+</div>
+
+</body>
+</html>
